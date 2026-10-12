@@ -1,3 +1,17 @@
-###Hundpsionatet tassen.
-##Hur jag skapar projekt
-#Min projekt består av tre filer, index.html, style.css och app.js. Jag öppnar index.html i webbläsaren för att köra projektet.#hundpensionatet
+🐶 Hundpsionatet tassen 🐶
+Om projekt
+Detta är ett webbprojekt handlar om hund-dagis.
+Syfte
+Visa att du självständigt kan bygga en kundsida med HTML, CSS och JavaScript, felsöka kod och tillämpa kursens begrepp. VG-nivån kräver djupare förståelse av JavaScript (context, scope, datatyper, samband mellan lösningar).
+
+PRojektet är byggt med:
+⇥ HTML
+⇥ CSS
+⇥ JavaScript
+
+Installation
+⇥ Klona projektet från GitHub.
+⇥ Öppna projektmappen i Visual Studio Code.
+⇥ Öppna index.html i webbläsaren.
+Hur jag skapar projekt
+

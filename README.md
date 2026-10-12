@@ -10,7 +10,7 @@ PRojektet är byggt med:
 ⇥ JavaScript
 
 Installation
-⇥ Klona projektet från GitHub.
+
 ⇥ Öppna projektmappen i Visual Studio Code.
 ⇥ Öppna index.html i webbläsaren.
 Hur jag skapar projekt

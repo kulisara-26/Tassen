@@ -12,7 +12,7 @@ Visa att du självständigt kan bygga en kundsida med HTML, CSS och JavaScript, 
 
 3⇥ JavaScript
 
-Installation
+Installation 
 
 ⇥ Öppna projektmappen i Visual Studio Code.
 

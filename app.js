@@ -1,22 +1,57 @@
 //börja med att kontrollera öppentid
-function opennow (){
-    const nu= new Date(); //skapa ny datum objekt
-    const dag= nu.getDay(); //letar nu dag 
-    const tidNu = nu.getHours();// leta nu tid
+function uppdateraStatus() {
+    const nu = new Date();
+    const veckodagar =[
+        "Söndag",
+        "Måndag",
+        "Tisdag",
+        "Onsdag",
+        "Torsdag",
+        "Fredag",
+        "Lördag"
+    ];
+    const dagar= veckodagar[nu.getDay()];
+    document.getElementById("dag").textContent =
+        `📅 Idag är ${dagar} ` ;
+    document.getElementById("status").textContent =
+        opennow();
 
-    // kontrollerar att öppna eller stäng
+}
+
+function opennow (){
+    const nu= new Date(); 
+    const dag= nu.getDay();  
+    const tidNu = nu.getHours();
+  
+    // kontrollerar att öppna eller stäng måndag -fredag
     
     if (dag >= 1 && dag <=5 && tidNu >= 7 && tidNu < 18){
-         return `Öppet just nu`;
-         }else if(dag === 6 && tidNu >=9 && tidNu < 14){
-         return ` 🐶 Öppet just nu`;
+         return `🐶Tassen är öppet just nu. Vi stränger kl.18.00`;
+         
+          //lördagar
+        }else if(dag === 6 && tidNu >=9 && tidNu < 14){
+         return ` 🐶 Tassen är öppet just nu. Vi stänger kl.14.00`;
+        
+         //idannan öppnar vardagar
+        } else if(dag >= 1 && dag <=5 && tidNu< 7 ){
+            return `🐶 Tassen är stäng just nu. Vi öppnar kl.07.00 `;
+
+        //innan lördagar
+        }else if(dag === 6 && tidNu < 9){
+            return `🐶 Tassen är stäng just nu. Vi öppnar kl.09.00 `;
+       
+            // söndag eller efter stängning lördag
+        }else if(dag=== 0 && dag ===6){
+            return `🐶 Tassen är stäng just nu. Vi öppnar på måmdag kl.07.00 `;
+        //fredagar
+        }else if (dag===5 && tidNu >=18){
+            return `🐶 Tassen är stäng just nu. Vi öppnar på lördag kl.09.00 `;
+
         }else {
-        return ` 🐶 Stäng just nu`;
+        return `🐶 Tassen är stäng just nu. Vi öppnar nästa vardag kl.07.00 `;
         }   
 }
-function uppdateraStatus() {
-    document.getElementById("status").textContent = opennow();
-}
+
 
 uppdateraStatus();
 setInterval(uppdateraStatus, 1000);
@@ -27,11 +62,300 @@ function uppdateraTid() {
     const minute =String(nu.getMinutes()).padStart(2,"0");;
     const sekunde = String(nu.getSeconds()).padStart(2,"0");;
     document.getElementById("klockan")
-    .textContent= `${timmar}:${minute}:${sekunde}`;
+    .textContent= `🕒 ${timmar}:${minute}:${sekunde}`;
 
 }
 uppdateraTid();
 setInterval(uppdateraTid, 1000);
 
-// 
+//Skapa array med två bokning 
+let bookning = [];
+try{
 
+const sparat= localStorage.getItem("tassenBookingar")
+
+    if (sparat !== null){
+            const data=JSON.parse(sparat);
+
+        if (Array.isArray(data)){
+            bookning = data;
+        }
+         } 
+        }catch (error){
+            console.error("kunden inte hämta bookningar:",error);
+                
+         }
+
+  //_--------------------------------------------------
+  //tjänter
+  const tjanster= [
+    {
+        namn: "Hunddagis",
+        beskrivning:"En trygg och rolig dag för din hund: heldag",
+        pris: 320
+    },
+    {
+      namn: "Hunddagis",
+        beskrivning:"En trygg och rolig dag för din hund: halvdag",
+        pris: 190  
+    },
+    {
+        namn: "Pensionat per natt",
+        beskrivning:"En trygghet för din hund att bo i hemmiljö",
+        pris: 450
+    },
+    {
+        namn: "Pensionat: kliport 10 dagar",
+        beskrivning:"En trygg och rolig dag för din hund",
+        pris: 2800
+    },
+    {
+        namn: "Hämtning och lämning",
+        beskrivning:"Ring innan hämtning och lämning",
+        pris: 150
+    }
+  ]
+ function visatjanster (){
+    const liststjanster = document.getElementById("tjansterlistan");
+    if (!liststjanster){
+        console.log("Tjänster saknar!!!");
+        return;
+    
+    }
+    liststjanster.replaceChildren();
+
+    tjanster.forEach(function (tjanst) {
+        const artikle = document.createElement("article");
+
+        const rubrik = document.createElement("h3")
+        rubrik.textContent=tjanst.namn;
+
+        const beskrivning =document.createElement("p")
+        beskrivning.textContent=tjanst.beskrivning;
+
+        const pris = document.createElement("p");
+        pris.textContent= "Pris:" + tjanst.pris + " kr";
+
+        artikle.append(rubrik,beskrivning, pris);
+        liststjanster.appendChild(artikle)
+        
+    });
+ }
+ visatjanster();
+
+
+//----------------------------------------------
+  // functionen visa alla bokningar 
+function renderaBookningar(){
+    const lista = document.getElementById("bookningslist");
+    const meddelande = document.getElementById("felmeddelande");
+   
+    if(!lista || !meddelande){
+        console.log("Bookninglistan saknas");
+        return;
+    }
+
+    //rensa den gamla visningen
+    lista.replaceChildren();
+
+    //kontrollera sms om listan är töm
+    if(bookning.length === 0){
+        meddelande.textContent=
+        "Du har inga bokningsförfrågningar ännu."
+        return;
+    }
+        meddelande.textContent ="";
+    //visar varje boknign
+
+    bookning.forEach(function(nybookning){
+    const article= document.createElement("article");
+
+    const namn =document.createElement("p");
+    namn.textContent= "Hundens namn: " + nybookning.hundnamn;
+
+    const date =document.createElement("p");
+    date.textContent="Önskat datum: " + nybookning.datum;
+    
+//skapa avboka knappen
+const avbookning=document.createElement("button")
+avbookning.textContent= "Avboka";
+avbookning.type ="button";
+
+avbookning.addEventListener("click" ,function(){
+    tabortbookning(nybookning.id);
+});
+
+article.append(namn,date,avbookning);
+lista.appendChild(article);
+});  
+}
+       
+
+//spara bokningar i webbläsaren
+function sparaBookning(){
+        localStorage.setItem(
+            "tassenBookingar",
+            JSON.stringify(bookning)
+        );
+    } 
+    //läg till ny bokningen
+ function laggtillbokningar(nybookning){
+    bookning.push(nybookning);
+    sparaBookning();
+    renderaBookningar();
+}
+   
+
+// ta bort bokning
+function tabortbookning(id){
+    bookning = bookning.filter(function(nybookning){
+        return nybookning.id !== id;
+    });
+
+    //spard den uppdaterade array efter ta bort
+    sparaBookning();
+    //kolla listan
+    renderaBookningar();
+} 
+    
+
+
+//hämta bokning igenom formulär form
+const formulär =document.getElementById("bookningsform");
+const hundform =document.getElementById("hundsnamn");
+const datumform=document.getElementById("datum");
+const felmeddelandet=document.getElementById("felmeddelande");
+const bekraftelse = document.getElementById("bekraftelse");
+
+
+//hantera formulär
+   if (!formulär || !hundform || !datumform || !felmeddelandet) {
+    console.error("Ett eller flera element saknas i HTML.");
+} else {
+    console.log("Alla formulärelement hittades!");
+}
+//hanterar efter submit
+formulär.addEventListener("submit",function(event){
+
+    event.preventDefault() //förhindrar att sidan laddas om
+
+    //hämta information från formulär
+    const hundnamn = document.getElementById("hundsnamn").value.trim();
+    const datum=document.getElementById("datum").value;
+
+    const felmeddelandet =document.getElementById("felmeddelande");
+
+    //rensa tidigare fel sms
+      felmeddelandet.textContent = "";
+    
+
+    //kontrollera fälte
+    if(hundnamn ==="" || datum===""){
+        felmeddelandet.textContent=
+        "Fyll i hundens namn och önskat datum";
+        return;
+    }
+
+    // skapar nya bokning i array
+    const nybookning= {
+        id: Date.now(),
+        hundnamn: hundnamn,
+        datum: datum
+    };
+
+// till lägg ny bookning
+    laggtillbokningar(nybookning);
+
+    //kontrollera bokning i console.log
+    console.log("Nybookning tillagd", nybookning);
+
+    //töm formulär
+    formulär.reset();
+
+    // visar ett bekräftelse sms
+    bekraftelse.textContent="";
+    bekraftelse.textContent= " Din förfrågan har lagts till ";
+});
+
+
+renderaBookningar();
+
+//----------------------------------------------------------
+
+//kundomdömen
+const omdomen= [
+    {
+        text: "Min hund älskar att vara här på Tassen! Personalen är jättertrevlig.",
+        person:"Alis"
+    },
+    {
+        text: "Det märks att personaler tycker om hundar.",
+        person:"Lisa"
+    },
+    {
+        text: "Personalen är snälla, och ta hand om min hund med omanke",
+        person:"Mina"
+    },
+    {text: "Jag är väldigt nöjd med bemötande och serviven",
+        person:"Erik"
+    },
+    {
+        text: "En fastastisk upplevelse för min hund! Personalen är jättertrevlig.",
+        person:"Alex"
+    }
+];
+
+let senasteomdomen = -1;
+
+const textomdomen = document.getElementById("omdomentext");
+const omdomenperson =document.getElementById("omdomenperson");
+const nyttomdomen =document.getElementById("nyomdomen");
+
+if (!textomdomen || !omdomenperson || !nyttomdomen ){
+    console.log("Ett eller flera element flr kundomdömen saknas");
+    
+    }else{
+         nyttomdomen.addEventListener("click", function(){
+        
+            let slump = Math.floor(Math.random()*omdomen.length)
+
+                if (slump === senasteomdomen){
+                    slump =(slump +1) % omdomen.length; 
+                }
+         senasteomdomen= slump;
+
+         const valtomdomen = omdomen[slump];
+
+         textomdomen.textContent = valtomdomen.text;
+         omdomenperson.textContent = " ☺ "+ valtomdomen.person;
+});
+    }
+
+    /*-------kontaktuppgift---------*/
+    const kontaktform =document.getElementById("kontaktform");
+    const kontakbekraftelse= document.getElementById("kontakbekraftelse");
+    
+    kontaktform.addEventListener("submit" , function(event){
+        event.preventDefault();
+   
+    const fornamn=document.getElementById("namn").value.trim();
+    const efternamn=document.getElementById("efternamn").value.trim();
+    const epost=document.getElementById("email").value.trim();
+    const meddelande =document.getElementById("meddelande").value.trim();
+
+    if (!fornamn || !efternamn || !epost|| !meddelande){
+        kontakbekraftelse.textContent= "Fyll i alla fält innan du skicka!!"
+        kontakbekraftelse.style.color ="red";
+        return;
+        
+    }
+    kontakbekraftelse.textContent =
+    `Tack ${fornamn}! Ditt meddelande har registrerats.`;
+    kontakbekraftelse.style.color= "green";
+
+    kontakbekraftelse.reset();
+    
+ });
+
+
+ 

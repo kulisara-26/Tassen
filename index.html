@@ -9,53 +9,141 @@
 </head>
 <body>
     <header>
-        <section id="öppetNu">
-            <p id="klockan">00:00:00</p>
-            <p id="dag"></p>
-            <p id="date"></p>
-            <p id="status"></p>
-         </section>
         <h1>Hundpensionsnatet-Tassen</h1>
         <nav>
             <ul>
                 <li><a href="#tjanster">Tjänster</a></li>
-                <li><a href="#boka">Bookningsförfrågan</a></li>
+                <li><a href="#bookning">Bookningsförfrågan</a></li>
                 <li><a href="#oppet">Öppettider</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section id="om oss">
-        <h2>Välkommen till Hundpensionsnatet-Tassen</h2>
-        <p>På Hundgården får din hund bo i en lugn och trygg hemmiljö<br/>
-        precis som hemma. Här finns inga burar eller stress.<br/> 
-        Vi tar hand om din hund med omtanke, <br/>daglig motion och anpassad omsorg.</p>
-         </section>
-       
-         <section id="boka">
-             <h3>Bokningförfrågan</h3>
-             <form method="post">
-                <label for="hundsnamn">Hundens namn</label>
-                <input type="text" id="hundsnamn">
-                <label for="äganamn">Ägarens namn</label>
-                <input type="text" id="äganamn">
-             </form>
-         </section>
+          <section id="oppetNu">
+                <p id="dag"></p>
+                <p id="status"></p>
+                <p id="klockan"></p>
+            </section>
 
-         <section id="kontakt">
-                <h3>Kontakta oss!</h3>
-                <p>Har du frågor och funderingar kring några av våra tjänster? Hör av dig till oss så hjälper vi dig</p>
-                <h4>Team Hundpensionsnatet-Tassn</h4>
-                <p>Nina, hundskötare ·<br/> Pelle, hundskötare och ägare</p>
+
+             <H2>🐶Välkom til Hundpensionsnatet-Tassen🐶</H2>
+        <section class="omoss">
+            
+            <p>Tassen är ett litet hunddagis och pensionat strax utanför stan. Tassen har två anställda.
+            <br/>plats för tolv hundar. På tassen får din hund bo i en lugn och trygg hemmiljö<br/>
+            precis som hemma. Här finns inga burar eller stress.<br/> 
+            Vi tar hand om din hund med omtanke, <br/>daglig motion och anpassad omsorg.
+            <br/>Här kan du läsa om våra tjänster, se vår öppentider eller boka en plats för din hund
+            <br/>Har du frågor? kntakta oss gärna via telefon eller e-post!</p>
+       
+            
+
+             <h2>🐶 Våra tjänster 🐶</h2>
+        <section id="tjanster">
+                <div id="tjansterlistan"></div>
          </section>
             
-       <div id="bokningslistan"></div>
-    
+         
+              <h2>🐶Gör en bookningsförfrågan🐶</h2>
+             
+             <p>Vill du boka en plats för din hund? Skicka en bokingsförfråga nedan. </p>
+             <p>Din förfrågan sparas i din webbläsare, vi ringer upp dig"</p>
+             
+             <section id="bookning">
+             <form id="bookningsform" method="post">
+                <div >
+                    <label for="hundsnamn">Hundens namn:</label>
+                    <input type="text" id="hundsnamn" placeholder="Hundensnamn" required>
+                </div>
+
+                <div>
+                    <label for="datum">Önskat datum</label>
+                     <input type="date" id="datum" name="datum">
+                </div>
+
+                <button type="submit">Skicka förfrågan</button>
+             </form>
+
+                <p id="felmeddelande" role="alert"></p>
+                <p id="bekraftelse" role="status"></p>
+                
+                <h4> 🐶 Mina förgråningar </h4>
+                <div id="bookningslist"></div>
+            </section>
+                <br/>
+
+            <section id="oppetNu">
+                <p id="dag"></p>
+                <p id="status"></p>
+                <p id="klockan"></p>
+            </section>
+
+            <section id="oppet">
+                <h2>🐶 Öppettiden 🐶</h2>
+                <ul>
+                    <li>Måndag -Fredag: 07.00 - 18.00</li>
+                    <li>Lördag: 09.00 - 14.00</li>
+                    <li>Söndag: Stäng</li>
+                </ul>
+         </section>
+
+         <section id="kundomdomen">
+                <h3>🐶 Vad kunder tycker om Tassen 🐶</h3>
+                <p>Läs mer om kundomdömen</p>
+                <div id ="omdomen">
+                    <p id="omdomentext">Klicka på button för att läsa kundeomdömen</p>
+                    <p id="omdomenperson"></p>
+                </div>
+                <button type="submit" id="nyomdomen">Visar ett annat kunds omdöm</button>
+
+         </section>
+        
+         <br/>
+         <img src="hund1.jpg" alt="två hundar" width="520px" height="220px"> 
+        <img src="hund3.jpg" alt=" fyra hundar" width="520px" height="220px">
+         <img src="hund2.jpg" alt="en hund" width="520px" height="220px">
+     
+         
+                <h2><br/>Kontakta oss!</h2>
+                <p>Har du frågor och funderingar kring några av våra tjänster? Hör av dig till oss så hjälper vi dig</p>
+         <section id="kontakt"> 
+            <form id="kontaktform" method="post" novalidate>
+                <div>
+                    
+                    <label for="namn">Förnamn</label>
+                    <input type="text" id="namn" namn="namn" placeholder="Förnamn" required>
+                </div>
+
+                <div>
+                    <label for="efternamn">Efernamn</label>
+                    <input type="text" id="efternamn" namn="efternamn" placeholder="Efternamn" required>
+                </div>
+
+                <div>
+                    <label for="email">E-post</label>
+                    <input type="email" id="email" namn="email" placeholder="Din@email.se" required>
+                </div>
+
+                <div>
+                    <label for="meddelande">Meddelande</label>
+                    <textarea id="meddelande" namn="meddelande" row="12" ></textarea>
+                </div>
+                <button id="submit">Skicka meddelande</button>
+                <p id="kontakbekraftelse" role="status"></p>
+            </form>
+            
+        </section>
+                <p>
+                    Mobil: 
+                    <a href="tel:0707985968">070-798 59 68</a>
+                </p>
+                <h4>Team Hundpensionsnatet-Tassn</h4>
+                <p>Hundskötare: Nina <br/>Hundskötare och ägare : Pelle</p>
     </main>
     <footer>
-        <p>@2026 Hundpensionatet Tassen</p>
-        <p>Hagvägen 4 · Tel. 0300-12 34 56 E-post:hej@tassen.se</p>
+        
+        <p>Address: Hagvägen 4  Täby,Stockholme·<br/> Tel. 070-798 59 68 <br/>E-post:exempel@tassen.se</p>
     </footer>
 </body>
 </html>

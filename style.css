@@ -7,64 +7,236 @@ html{
     scroll-padding-top:7rem ;
     scroll-behavior: smooth;
 }
+
 body{
+    font-family: system-ui,sans-serif;
+    margin:0;
+    line-height: 1.;
+    color:black;
+    width: 100%;
+    overflow-wrap: break-word;
    
-    font-size: large;
-    color: rgb(1, 91, 55);
-    
-}
-*{
-     font-family: system-ui,sans-serif;
-     margin: 0px;
-}
-header,
-footer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.25rem;
-  background: #9ed590;
-  color: #efeee9;
+      
 }
 
 /*header*/
+header {
+  display:flexbox;
+  justify-content:space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: #149a72;
+  color: #efeee9;
+}
+h1{
+    font-size: 2rem;
+    text-align: left;
+}
  nav ul {
+
     display:flex;
-   
-    margin: 5px;
-    gap: 35px;
-    list-style-type: none;
-    justify-content: center;
+    font-size: 1.5rem;
+    list-style: none;
+    justify-content: right;
+    flex-wrap: wrap;
+    margin: 0px;
+    padding:0px;
+    gap: 12px;
+    
     
  }
- nav ul a{
-    text-decoration: none;
+ nav a{
+    display:block;
+   text-decoration: none;
     color: aliceblue;
+    font-weight: blod;
  }
 nav ul a:hover{
-    color: rgb(188, 21, 21);
+   
+    color: rgb(188, 11, 11);
     text-decoration: none;
 }
 
+
+button{
+margin-top: 1.5rem;
+   font-weight: bold;
+   width: auto;
+   height: 50px;
+   background-color: antiquewhite;
+   font-size: 1rem;
+   color: blue;
+}
+/*----------------öppning---------------------------*/
 #klockan{
-    color: wheat;
-    top:5px;
-   
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    right: 10px;
+    color: #020a01;
+    font-variant-numeric: tabular-nums;
 }
 #status{
-    color: wheat;
-    top:2px;
-    text-align: right;
-    font-size: 1rem;
+    font-size: 1 rem;
+    font-weight: bold;
+}
+#dag{
     font-weight: bold;
 }
 
+#oppet li{
+    display: grid;
+    padding: 3px;
+    list-style: none;
+    text-align: center;
+    font-size: 1.2rem;
 
-@media (min-width: 376px) {
+}
+/*--------------------------------------*/
+h2{
+    color: rgb(184, 10, 10);
+    text-align: center;
+}
+h4{
+    font-weight: bold;
+    color: black;
+    font-size: 20px;
+}
+
+p{
+    color: black;
+    font-size: 20px;
+    line-height: 1.6;
+}
+.omoss{
+    background-color: rgb(214, 252, 252);
+    padding: 30px;
+}
+img{
+    width: 300px;
+    max-height: 300px;
+    object-fit: cover;
+    margin: 25px 0;
+}
+/*-----------------------tjänster*/
+#tjansterlistan{
+    display: grid;
+    width: 100%;
+    height: auto;
+    grid-template-columns:repeat(3, 1fr);
+    gap: 10px;
+    padding: 3px;
+    text-align: left;
     
+}
+#tjansterlistan article p:last-child{
+    color: red;
+}
+/*---------------------------------*/
+#bookning{
+    display:flexbox;
+    flex-direction: column;
+    max-width: 400px;
+    gap: 15px;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.6;
+    
+}
+#bookningsform{
+    display: flexbox;
+}
+#bookningslist{
+    border: 8px;
+    width: auto;
+    height: auto;
+    background-color: bisque;
+    box-shadow: blue 3px 3px;
+    border-radius: 5px;
+    text-align: center;
+}
+label{
+    font-size: 1.2rem;
+    line-height: 2;
+    font-weight: bold;
+    align-items: center;
+}
+input{
+    width: 100%;
+    padding: 12px;
+    border: 1px blue;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    
+}
+#felmeddelande{
+
+    box-shadow: blue 3px 3px;
+    background-color: bisque;
+    width:400px;
+    height: auto;
+    border-radius: 5px;
+    color: blue;
+
+}
+/*----------------------------------------*/
+
+#bekraftelse{
+    box-shadow: blue 3px 3px;
+    background-color: bisque;
+    width:300px;
+    height: auto;
+    border-radius: 5px;
+    color: blue;
+}
+
+#kontakt{
+    display: block;
+}
+#kontaktform{
+   
+    width: 300px;
+    flex-direction: column;
+   
+}
+#kontaktform label{
+    
+    font-size: 1.2rem;
+    line-height: 2;
+    font-weight: bold;
+    align-items: center;
+}
+#meddelande{
+    margin-top: 10px;
+    width: 300px;
+}
+
+footer {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background:#149a72;
+  color: #efeee9;
+  text-align: center;
+  
+}
+
+/*mobil*/
+@media  (max-width: 600px) {
+  header {
+    width: 100%;
+ flex-direction: column;
+  }
+  nav ul{
+    flex-direction: column;
+    align-items: center;
+    gap:10px ;
+  }
+  #tjanster{
+    grid-template-columns: 1fr;
+  }
+#bookning{
+    flex-direction: column; }
+#kontaktform input{
+    max-width: 100%;
+    min-width: 0;
+}
 }

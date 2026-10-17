@@ -12,7 +12,7 @@ function uppdateraStatus() {
     ];
     const dagar= veckodagar[nu.getDay()];
     document.getElementById("dag").textContent =
-        `📅 Idag är ${dagar} ` ;
+        `📅${dagar} ` ;
     document.getElementById("status").textContent =
         opennow();
 
@@ -68,24 +68,6 @@ function uppdateraTid() {
 uppdateraTid();
 setInterval(uppdateraTid, 1000);
 
-//Skapa array med två bokning 
-let bookning = [];
-try{
-
-const sparat= localStorage.getItem("tassenBookingar")
-
-    if (sparat !== null){
-            const data=JSON.parse(sparat);
-
-        if (Array.isArray(data)){
-            bookning = data;
-        }
-         } 
-        }catch (error){
-            console.error("kunden inte hämta bookningar:",error);
-                
-         }
-
   //_--------------------------------------------------
   //tjänter
   const tjanster= [
@@ -105,13 +87,13 @@ const sparat= localStorage.getItem("tassenBookingar")
         pris: 450
     },
     {
-        namn: "Pensionat: kliport 10 dagar",
+        namn: "Klippkort 10 heldagar",
         beskrivning:"En trygg och rolig dag för din hund",
         pris: 2800
     },
     {
         namn: "Hämtning och lämning",
-        beskrivning:"Ring innan hämtning och lämning",
+        beskrivning:"Enligt överenkommelse",
         pris: 150
     }
   ]
@@ -145,7 +127,95 @@ const sparat= localStorage.getItem("tassenBookingar")
 
 
 //----------------------------------------------
-  // functionen visa alla bokningar 
+ 
+
+//Skapa array med töm bokning 
+let bookning = [];
+try{
+
+const sparat= localStorage.getItem("tassenBookingar")
+
+    if (sparat !== null){
+            const data=JSON.parse(sparat);
+
+        if (Array.isArray(data)){
+            bookning = data;
+        }
+         } 
+        }catch (error){
+            console.error("kunden inte hämta bookningar:",error);
+                
+         }
+
+//skapa bokning 
+
+const formulär =document.getElementById("bookningsform");
+const hundform =document.getElementById("hundsnamn");
+const datumform=document.getElementById("datum");
+const agaremobil=document.getElementById("agaremobil")
+const felmeddelandet=document.getElementById("felmeddelande");
+
+const bekraftelse = document.getElementById("bekraftelse");
+
+
+//hantera formulär
+   if (!formulär || !hundform || !datumform || !agaremobil || !felmeddelandet) {
+    console.error("Ett eller flera element saknas i HTML.");
+} else {
+    console.log("Alla formulärelement hittades!");
+}
+//hanterar efter submit
+formulär.addEventListener("submit",function(event){
+
+    event.preventDefault() //förhindrar att sidan laddas om
+
+    
+    //hämta information från formulär
+    const hundnamn = document.getElementById("hundsnamn").value.trim();
+    const datum=document.getElementById("datum").value;
+    const mobilnummer=document.getElementById("agaremobil").value.trim();
+
+    const felmeddelandet =document.getElementById("felmeddelande");
+
+    //rensa tidigare fel sms
+      felmeddelandet.textContent = "";
+    
+
+    //kontrollera fälte
+    if(hundnamn ==="" || datum=== "" || mobilnummer===""){
+        felmeddelandet.textContent=
+        "Fyll i hundens namn och önskat datum och mobilnummer";
+        return;
+    }
+
+    // skapar nya bokning i array
+    const nybookning= {
+        id: Date.now(),
+        hundnamn: hundnamn,
+        datum: datum,
+        agaremobil: mobilnummer
+    };
+
+// till lägg ny bookning
+    laggtillbokningar(nybookning);
+
+    //kontrollera bokning i console.log
+    console.log("Nybookning tillagd", nybookning);
+
+    //töm formulär
+    formulär.reset();
+
+    // visar ett bekräftelse sms
+    bekraftelse.textContent="";
+    bekraftelse.textContent= " Din förfrågan har lagts till ";
+});
+
+
+renderaBookningar();
+
+//-------------------------------------------------------------
+
+// functionen om bokningar 
 function renderaBookningar(){
     const lista = document.getElementById("bookningslist");
     const meddelande = document.getElementById("felmeddelande");
@@ -175,6 +245,9 @@ function renderaBookningar(){
 
     const date =document.createElement("p");
     date.textContent="Önskat datum: " + nybookning.datum;
+
+    const agare = document.createElement("p");
+    agare.textContent="Ägare mobil number: " + nybookning.agaremobil;
     
 //skapa avboka knappen
 const avbookning=document.createElement("button")
@@ -185,7 +258,7 @@ avbookning.addEventListener("click" ,function(){
     tabortbookning(nybookning.id);
 });
 
-article.append(namn,date,avbookning);
+article.append(namn,date,agare,avbookning);
 lista.appendChild(article);
 });  
 }
@@ -217,71 +290,9 @@ function tabortbookning(id){
     //kolla listan
     renderaBookningar();
 } 
-    
 
 
-//hämta bokning igenom formulär form
-const formulär =document.getElementById("bookningsform");
-const hundform =document.getElementById("hundsnamn");
-const datumform=document.getElementById("datum");
-const felmeddelandet=document.getElementById("felmeddelande");
-const bekraftelse = document.getElementById("bekraftelse");
-
-
-//hantera formulär
-   if (!formulär || !hundform || !datumform || !felmeddelandet) {
-    console.error("Ett eller flera element saknas i HTML.");
-} else {
-    console.log("Alla formulärelement hittades!");
-}
-//hanterar efter submit
-formulär.addEventListener("submit",function(event){
-
-    event.preventDefault() //förhindrar att sidan laddas om
-
-    //hämta information från formulär
-    const hundnamn = document.getElementById("hundsnamn").value.trim();
-    const datum=document.getElementById("datum").value;
-
-    const felmeddelandet =document.getElementById("felmeddelande");
-
-    //rensa tidigare fel sms
-      felmeddelandet.textContent = "";
-    
-
-    //kontrollera fälte
-    if(hundnamn ==="" || datum===""){
-        felmeddelandet.textContent=
-        "Fyll i hundens namn och önskat datum";
-        return;
-    }
-
-    // skapar nya bokning i array
-    const nybookning= {
-        id: Date.now(),
-        hundnamn: hundnamn,
-        datum: datum
-    };
-
-// till lägg ny bookning
-    laggtillbokningar(nybookning);
-
-    //kontrollera bokning i console.log
-    console.log("Nybookning tillagd", nybookning);
-
-    //töm formulär
-    formulär.reset();
-
-    // visar ett bekräftelse sms
-    bekraftelse.textContent="";
-    bekraftelse.textContent= " Din förfrågan har lagts till ";
-});
-
-
-renderaBookningar();
-
-//----------------------------------------------------------
-
+//-----------------------------------------------------
 //kundomdömen
 const omdomen= [
     {

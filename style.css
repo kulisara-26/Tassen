@@ -87,7 +87,7 @@ margin-top: 1.5rem;
     padding: 3px;
     list-style: none;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.rem;
 
 }
 /*--------------------------------------*/
@@ -95,9 +95,16 @@ h2{
     color: rgb(184, 10, 10);
     text-align: center;
 }
+h3{
+    font-weight: bold;
+    color:  rgb(184, 10, 10);
+    font-size: 20px;
+}
+
+
 h4{
     font-weight: bold;
-    color: black;
+    color:  rgb(184, 10, 10);
     font-size: 20px;
 }
 
@@ -118,7 +125,7 @@ img{
 }
 /*-----------------------tjänster*/
 #tjansterlistan{
-    display: grid;
+    display: flexbox;
     width: 100%;
     height: auto;
     grid-template-columns:repeat(3, 1fr);
@@ -144,14 +151,16 @@ img{
 #bookningsform{
     display: flexbox;
 }
+/*box som visa efter skicka förfrågan*/ 
 #bookningslist{
     border: 8px;
     width: auto;
     height: auto;
     background-color: bisque;
-    box-shadow: blue 3px 3px;
+    box-shadow: rgb(255, 0, 13) 3px 3px;
     border-radius: 5px;
-    text-align: center;
+    align-items: left;
+    line-height: .5;
 }
 label{
     font-size: 1.2rem;
@@ -168,24 +177,25 @@ input{
     
 }
 #felmeddelande{
-
-    box-shadow: blue 3px 3px;
-    background-color: bisque;
-    width:400px;
-    height: auto;
-    border-radius: 5px;
-    color: blue;
-
-}
-/*----------------------------------------*/
-
-#bekraftelse{
+    font-size: 16px;
+    justify-content: left;
     box-shadow: blue 3px 3px;
     background-color: bisque;
     width:300px;
     height: auto;
     border-radius: 5px;
     color: blue;
+}
+
+/*din fröfrågan har lags till*/
+#bekraftelse{
+    box-shadow: blue 3px 3px;
+    background-color: bisque;
+    width:250px;
+    height: auto;
+    border-radius: 5px;
+    color: blue;
+    display: inline;
 }
 
 #kontakt{

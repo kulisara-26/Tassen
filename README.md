@@ -21,4 +21,4 @@ Installation
 Hur jag skapar projekt
 
 
->>>>>>> 7255d2cb785fc210088aed430e04044aafc399ba
+

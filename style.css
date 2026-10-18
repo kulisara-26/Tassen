@@ -83,8 +83,9 @@ margin-top: 1.5rem;
 }
 
 #oppet li{
-    display: grid;
+    display: flexbox;
     padding: 3px;
+    font-weight: bold;
     list-style: none;
     text-align: center;
     font-size: 1.rem;
@@ -98,7 +99,7 @@ h2{
 h3{
     font-weight: bold;
     color:  rgb(184, 10, 10);
-    font-size: 20px;
+    font-size: 19px;
 }
 
 
@@ -118,17 +119,17 @@ p{
     padding: 30px;
 }
 img{
-    width: 300px;
-    max-height: 300px;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
     margin: 25px 0;
 }
 /*-----------------------tjänster*/
 #tjansterlistan{
-    display: flexbox;
+    display: grid;
     width: 100%;
     height: auto;
-    grid-template-columns:repeat(3, 1fr);
+    grid-template-columns:repeat(2, 1fr);
     gap: 10px;
     padding: 3px;
     text-align: left;
@@ -177,11 +178,12 @@ input{
     
 }
 #felmeddelande{
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: bold;
     justify-content: left;
     box-shadow: blue 3px 3px;
     background-color: bisque;
-    width:300px;
+    width:autopx;
     height: auto;
     border-radius: 5px;
     color: blue;
@@ -199,16 +201,25 @@ input{
 }
 
 #kontakt{
-    display: block;
+     display:flexbox;
+    flex-direction: column;
+    max-width: 400px;
+    gap: 15px;
+    justify-content: center;
+    text-align: left;
+    line-height: 1.6;
 }
+
 #kontaktform{
-   
-    width: 300px;
+    
+    width: auto;
+    height: auto;
     flex-direction: column;
    
 }
 #kontaktform label{
-    
+    width: 100px;
+    height: 50px;
     font-size: 1.2rem;
     line-height: 2;
     font-weight: bold;
@@ -216,18 +227,18 @@ input{
 }
 #meddelande{
     margin-top: 10px;
-    width: 300px;
+    width: 150px;
+    height: 50px;
 }
 
 footer {
-  display: grid;
+  display: flexbox;
   gap: 1rem;
   padding: 1rem 1.25rem;
   background:#149a72;
   color: #efeee9;
   text-align: center;
-  
-}
+  }
 
 /*mobil*/
 @media  (max-width: 600px) {

@@ -55,6 +55,7 @@ function opennow (){
 
 uppdateraStatus();
 setInterval(uppdateraStatus, 1000);
+
 //uppdetera klockan
 function uppdateraTid() {
     const nu = new Date();
@@ -362,9 +363,9 @@ if (!textomdomen || !omdomenperson || !nyttomdomen ){
     }
     kontakbekraftelse.textContent =
     `Tack ${fornamn}! Ditt meddelande har registrerats.`;
-    kontakbekraftelse.style.color= "green";
+    kontakbekraftelse.style.color= "blue";
 
-    kontakbekraftelse.reset();
+   kontaktform.reset(); // tömme formulärets fält efter att meddelandet har registrerats
     
  });
 

@@ -27,31 +27,28 @@ Projektet är byggt med:
 5. Kontaktformulär skrivs på HTML för besökare, skriver förnamn, efternamn, e-post och meddelandet. Javascript kontrollerar att alla fält fyller. Om något fält är töm visa ett meddelande annars visa ett bekräftelsemeddelande.
 
 🐶CSS: Flexbox och Grid
-Jag använder både Flexbox och Grid för att skapa en tydlig och respons  layout eftersom de har olika styrkor. CSS Grid där innehållet behöver organiseras i rader och kolumner och det ska passa med tjänster som visar bredvid varandra.
+	Jag använder både Flexbox och Grid för att skapa en tydlig och respons  layout eftersom de har olika styrkor. CSS Grid där innehållet behöver organiseras i rader och kolumner och det ska passa med tjänster som visar bredvid varandra.
 CSS Flexbox används för att justera element i en rad eller i kolumn.
 
 🐶 Function och forEach()
-Jag använder forEach() för att gå igenom Array och visar information på webbsidan. Denna information läggs till i DOM. Jag valde forEach() för att  åtgärda för varje bokning och tjänster utan att skapa nya array.
+	Jag använder forEach() för att gå igenom Array och visar information på webbsidan. Denna information läggs till i DOM.  ForEach() gör för att  åtgärda för varje bokning och tjänster utan att skapa nya array.
 
 🐶localStorage och JSON
-Jag använder LocalStorage för att spara bokningsförfrågningar i webbläsaren. När sidan öppnas igen hämtar JavaScript de sparade uppgifterna.
+	Jag använder LocalStorage för att spara bokningsförfrågningar i webbläsaren. När sidan öppnas igen hämtar JavaScript de sparade uppgifterna.
 Jag använder JSON.stringify() för att omvandla arrayen till en text som kan sparas och JSON.parse() för att omvandla den sparade texten tillbaka till Javascript-data.
 
 🐶 State-hantering
-Jag använder array som heter booking som håller reda på bokningsförfrågan. När en bokning läggs till eller ta bort, uppdatera booking. Jag använder localstorage för att spara bookingar i webbläsare. och även tjänster använder jag array för att lättare när jag vill uppdatera tjänster
+	Jag använder array som heter booking som håller reda på bokningsförfrågan. När en bokning läggs till eller ta bort, uppdatera booking. Jag använder localstorage för att spara bookingar i webbläsare. och även tjänster använder jag array för att lättare när jag vill uppdatera tjänster.
 
 🐶 En bugg du fastnade på i javascript:
-När jag arbetar händer det ibland att koden inte fungerar eftersom jag har skrivit fel funktionsnamn eller variabelnamn. Jag undersöker koden med hjälp av DevTools för att hitta var felet uppstår. Jag använder konsolen för att läsa felmeddelanden . När jag hittade felet rättar jag namnet och testar koden igen.
+	När jag arbetar händer det ibland att koden inte fungerar eftersom jag har skrivit fel funktionsnamn eller variabelnamn. Jag undersöker koden med hjälp av DevTools för att hitta var felet uppstår. Jag använder konsolen för att läsa felmeddelanden . När jag hittade felet rättar jag namnet och testar koden igen.
 
 🐶Kort reflektion:
-	Jag har lärt mig mer genom att testa och felsöka när jag upptäcker felen. Under skriver hundpensionatet lär jag mer om html , css och javascript. Jag över mer om att skapa funktion, objekt, array eller spara i localstorage. Samt att en webbplats ska vara interaktiv behöver att över andra om css också.
+	Jag har lärt mig mer genom att testa och felsöka när jag upptäcker felen. Under skriver hundpensionatet lär jag mer om html , css och Javascript. Jag över mer om att skapa funktion, objekt, array eller spara i lokalstorage. Samt att en webbplats ska vara interaktiv behöver att över andra om css också.
 
-🐶Scope och callbacks
-Jag använder addEventListerner()  att hantera händelse.Event används för att hantera händelse och förhindra att sida laddas om.
+🐶 Scope.
+	Scope beter sig i just den funktion som deklareras inuti den funktionen. Mitt projekt använder jag scope i callback-funktionen (addEventListerner) (function(event)) som hanterar bookningsformulär. Variabler hundnamn, datum och mobilnummer deklarerar med const inuti i funktionen där kan tillgänglig att använda, men inte direkt utanför funktionen.
 
-
-
-
-
-
-
+🐶Återanvändbara funktioner ⇥ renderabookningar() och sparaBookningar()
+Jag använder renderabookingar() för att visa bokingasförfrågan på webbsidan. Funktionen kan anropa flera gånger när en bokning lägger till eller tar bort. Listan uppdaterar och visar aktuella bokningar.
+SparaBookningar() använder jag för att spara bookingsarrayen i Localstorage med hjälp av JSON.stringity().  Funktionen anropar när en bokning lägger till eller tar bort för att uppdatera bokningar och sparas i webbläsare.

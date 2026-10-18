@@ -9,11 +9,15 @@ Projektet är byggt med:
 3. JavaScript ⇥ interaktivitet och funktioner. ⇥ DOM manipulation ⇥ LocalStorage
 
 🐶 Så kör min projektet
-⇥ Öppna hundpensionatet mappen i Visual Studio Code.
-⇥ Öppna filen index.html.
-⇥ Högerklicka på index.html och välj Open with Live Server.
-⇥ Webbplatsen öppnas i webbläsaren.
-⇥ När jag ändrar och sparar HTML-, CSS- eller JavaScript-filerna uppdateras webbplatsen i webbläsaren
+1.⇥ Öppna hundpensionatet mappen i Visual Studio Code.
+
+2⇥ Öppna filen index.html.
+
+3⇥ Högerklicka på index.html och välj Open with Live Server.
+
+4⇥ Webbplatsen öppnas i webbläsaren.
+
+5⇥ När jag ändrar och sparar HTML-, CSS- eller JavaScript-filerna uppdateras webbplatsen i webbläsaren
 
 🐶Webbplats funktioner.
 1. öppettider och aktuell tid med hjälp av JavaScript för att visa information om öppettider och uppdatera klockan.

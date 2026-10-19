@@ -21,111 +21,128 @@ function uppdateraStatus() {
 function opennow (){
     const nu= new Date(); 
     const dag= nu.getDay();  
-    const tidNu = nu.getHours();
+    const minuterNu = nu.getHours() * 60 + nu.getMinutes();
   
-    // kontrollerar att öppna eller stäng måndag -fredag
-    
-    if (dag >= 1 && dag <=5 && tidNu >= 7 && tidNu < 18){
-         return `🐶Tassen är öppet just nu. Vi stränger kl.18.00`;
-         
-          //lördagar
-        }else if(dag === 6 && tidNu >=9 && tidNu < 14){
-         return ` 🐶 Tassen är öppet just nu. Vi stänger kl.14.00`;
-        
-         //idannan öppnar vardagar
-        } else if(dag >= 1 && dag <=5 && tidNu< 7 ){
-            return `🐶 Tassen är stäng just nu. Vi öppnar kl.07.00 `;
+//måndag-fredag
+if (dag >= 1 && dag <= 5) {
 
-        //innan lördagar
-        }else if(dag === 6 && tidNu < 9){
-            return `🐶 Tassen är stäng just nu. Vi öppnar kl.09.00 `;
-       
-            // söndag eller efter stängning lördag
-        }else if(dag=== 0 && dag ===6){
-            return `🐶 Tassen är stäng just nu. Vi öppnar på måmdag kl.07.00 `;
-        //fredagar
-        }else if (dag===5 && tidNu >=18){
-            return `🐶 Tassen är stäng just nu. Vi öppnar på lördag kl.09.00 `;
+    if (minuterNu >= 7 * 60 && minuterNu < 18 *60){
+        return "🐶 Tassen är öppet just nu. Vi stänger kl. 18.00.";
+    }
+    if (minuterNu < 7 *60){
+        return "🐶 Tassen är stängt just nu. Vi öppnar kl. 07.00.";
+    }
+    if (dag === 5) {
+            return "🐶 Tassen är stängt just nu. Vi öppnar på lördag kl. 09.00.";
+        }
 
-        }else {
-        return `🐶 Tassen är stäng just nu. Vi öppnar nästa vardag kl.07.00 `;
-        }   
+        return "🐶 Tassen är stängt just nu. Vi öppnar nästa vardag kl. 07.00.";
 }
-
-
+//lördag
+if (dag ===6){
+    if(minuterNu >= 9 * 60 && minuterNu < 14 * 60){
+        return "🐶 Tassen är öppet just nu. Vi stänger kl. 14.00.";   
+    }
+    if(minuterNu<9 *60){
+        return  "🐶 Tassen är stängt just nu. Vi öppnar kl. 09.00.";
+    }
+        return "🐶 Tassen är stängt just nu. Vi öppnar på måndag kl. 07.00.";
+}
+// söndag
+ return "🐶 Tassen är stängt just nu. Vi öppnar på måndag kl. 07.00.";
+}
 uppdateraStatus();
 setInterval(uppdateraStatus, 1000);
-
 //uppdetera klockan
 function uppdateraTid() {
     const nu = new Date();
-    const timmar = String(nu.getHours()).padStart(2,"0");
-    const minute =String(nu.getMinutes()).padStart(2,"0");;
-    const sekunde = String(nu.getSeconds()).padStart(2,"0");;
-    document.getElementById("klockan")
-    .textContent= `🕒 ${timmar}:${minute}:${sekunde}`;
 
+    const timmar = String(nu.getHours()).padStart(2,"0");
+    const minuter =String(nu.getMinutes()).padStart(2,"0");
+    const sekunder = String(nu.getSeconds()).padStart(2,"0");
+
+    const klocka =document.getElementById("klockan")
+    if(klocka){
+        klocka.textContent= `🕒 ${timmar}:${minuter}:${sekunder}`;
+    }
 }
 uppdateraTid();
 setInterval(uppdateraTid, 1000);
 
   //_--------------------------------------------------
-  //tjänter
-  const tjanster= [
-    {
-        namn: "Hunddagis",
-        beskrivning:"En trygg och rolig dag för din hund: heldag",
-        pris: 320
-    },
-    {
-      namn: "Hunddagis",
-        beskrivning:"En trygg och rolig dag för din hund: halvdag",
-        pris: 190  
-    },
-    {
-        namn: "Pensionat per natt",
-        beskrivning:"En trygghet för din hund att bo i hemmiljö",
-        pris: 450
-    },
-    {
-        namn: "Klippkort 10 heldagar",
-        beskrivning:"En trygg och rolig dag för din hund",
-        pris: 2800
-    },
-    {
-        namn: "Hämtning och lämning",
-        beskrivning:"Enligt överenkommelse",
-        pris: 150
+  //klass som beskriver en tjänst
+  class tjanst{
+    constructor(namn, beskriverning, pris){
+        this.namn = namn;
+        this.beskriverning = beskriverning;
+        this.pris = pris
     }
-  ]
- function visatjanster (){
-    const liststjanster = document.getElementById("tjansterlistan");
-    if (!liststjanster){
-        console.log("Tjänster saknar!!!");
+
+
+// skapa HTML för tjänster
+visatjanster() {
+    const artikel =document.createElement("article");
+
+        const rubrik = document.createElement("h3");
+        rubrik.textContent=this.namn;
+
+        const beskrivning =document.createElement("p");
+        beskrivning.textContent=this.beskrivning;
+
+        const pristext = document.createElement("p");
+        pristext.textContent= "Pris:" + this.pris + " kr";
+
+        artikel.append(rubrik, beskrivning, pristext);
+
+        return artikel; }
+  }
+
+        // skapar objekt från klass med new
+  const tjanster= [
+    new tjanst(
+        "Hunddagis -heldag",
+        "En trygg och rolig dag för din hund: heldag",
+        320
+    ),
+    new tjanst(
+        "Hunddagis-halvdag",
+        "En trygg och rolig dag för din hund: halvdag",
+        190  
+    ),
+    new tjanst(
+        "Pensionat per natt",
+        "En trygghet för din hund att bo i hemmiljö",
+         450
+    ),
+    new tjanst(
+         "Klippkort 10 heldagar",
+        "En trygg och rolig dag för din hund",
+        2800
+    ),
+    new tjanst(
+         "Hämtning och lämning",
+        "Enligt överenkommelse",
+         150
+    )
+  ];
+  //visa tjänster på webbsidan
+ function visatjanster() {
+
+    const lista = document.getElementById("tjansterlistan");
+    
+    if (!lista){
+        console.error("Element tjänster saknar i html!!!");
         return;
     
     }
-    liststjanster.replaceChildren();
+lista.replaceChildren();
 
-    tjanster.forEach(function (tjanst) {
-        const artikle = document.createElement("article");
-
-        const rubrik = document.createElement("h3")
-        rubrik.textContent=tjanst.namn;
-
-        const beskrivning =document.createElement("p")
-        beskrivning.textContent=tjanst.beskrivning;
-
-        const pris = document.createElement("p");
-        pris.textContent= "Pris:" + tjanst.pris + " kr";
-
-        artikle.append(rubrik,beskrivning, pris);
-        liststjanster.appendChild(artikle)
-        
+tjanster.forEach(function(tjanst) {
+    lista.appendChild(tjanst.visatjanster());
     });
  }
  visatjanster();
-
+   
 
 //----------------------------------------------
  

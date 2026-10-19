@@ -77,26 +77,7 @@ setInterval(uppdateraTid, 1000);
         this.beskriverning = beskriverning;
         this.pris = pris
     }
-
-
-// skapa HTML för tjänster
-visatjanster() {
-    const artikel =document.createElement("article");
-
-        const rubrik = document.createElement("h3");
-        rubrik.textContent=this.namn;
-
-        const beskrivning =document.createElement("p");
-        beskrivning.textContent=this.beskrivning;
-
-        const pristext = document.createElement("p");
-        pristext.textContent= "Pris:" + this.pris + " kr";
-
-        artikel.append(rubrik, beskrivning, pristext);
-
-        return artikel; }
-  }
-
+}
         // skapar objekt från klass med new
   const tjanster= [
     new tjanst(
@@ -125,6 +106,25 @@ visatjanster() {
          150
     )
   ];
+  
+  // skapa HTML för tjänster
+visatjanster() {
+    const artikel =document.createElement("article");
+
+        const rubrik = document.createElement("h3");
+        rubrik.textContent=this.namn;
+
+        const beskrivning =document.createElement("p");
+        beskrivning.textContent=this.beskrivning;
+
+        const pristext = document.createElement("p");
+        pristext.textContent= "Pris:" + this.pris + " kr";
+
+        artikel.append(rubrik, beskrivning, pristext);
+
+        return artikel; }
+  
+
   //visa tjänster på webbsidan
  function visatjanster() {
 

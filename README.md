@@ -9,11 +9,15 @@ Projektet är byggt med:
 3. JavaScript ⇥ interaktivitet och funktioner. ⇥ DOM manipulation ⇥ LocalStorage
 
 🐶 Så kör min projektet
-⇥ Öppna hundpensionatet mappen i Visual Studio Code.
-⇥ Öppna filen index.html.
-⇥ Högerklicka på index.html och välj Open with Live Server.
-⇥ Webbplatsen öppnas i webbläsaren.
-⇥ När jag ändrar och sparar HTML-, CSS- eller JavaScript-filerna uppdateras webbplatsen i webbläsaren
+1.⇥ Öppna hundpensionatet mappen i Visual Studio Code.
+
+2⇥ Öppna filen index.html.
+
+3⇥ Högerklicka på index.html och välj Open with Live Server.
+
+4⇥ Webbplatsen öppnas i webbläsaren.
+
+5⇥ När jag ändrar och sparar HTML-, CSS- eller JavaScript-filerna uppdateras webbplatsen i webbläsaren
 
 🐶Webbplats funktioner.
 1. öppettider och aktuell tid med hjälp av JavaScript för att visa information om öppettider och uppdatera klockan.
@@ -48,6 +52,12 @@ Jag använder JSON.stringify() för att omvandla arrayen till en text som kan sp
 
 🐶 Scope.
 	Scope beter sig i just den funktion som deklareras inuti den funktionen. Mitt projekt använder jag scope i callback-funktionen (addEventListerner) (function(event)) som hanterar bookningsformulär. Variabler hundnamn, datum och mobilnummer deklarerar med const inuti i funktionen där kan tillgänglig att använda, men inte direkt utanför funktionen.
+🐶this.
+	I min klass tjanst använder jag this för att spara och hämta information om varje tjänst, till exempel namn, beskrivning och pris.
+
+I konstruktorn används this.namn, this.beskrivning och this.pris för att spara värdena i objektet.
+
+När metoden visatjanster() körs använder jag this för att hämta informationen från objektet och visa tjänstens namn, beskrivning och pris på webbsidan.
 
 🐶Återanvändbara funktioner ⇥ renderabookningar() och sparaBookningar()
 Jag använder renderabookingar() för att visa bokingasförfrågan på webbsidan. Funktionen kan anropa flera gånger när en bokning lägger till eller tar bort. Listan uppdaterar och visar aktuella bokningar.

@@ -72,9 +72,9 @@ setInterval(uppdateraTid, 1000);
   //_--------------------------------------------------
   //klass som beskriver en tjänst
   class tjanst{
-    constructor(namn, beskriverning, pris){
+    constructor(namn, beskrivning, pris){
         this.namn = namn;
-        this.beskriverning = beskriverning;
+        this.beskrivning = beskrivning;
         this.pris = pris
     }
 
